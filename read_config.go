@@ -14,7 +14,7 @@ func WriteConfig() {
 
 }
 
-func CheckConfig(configPath string) bool {
+func CheckConfigExists(configPath string) bool {
 	if _, err := os.Stat(configPath); err != nil {
 		fmt.Println("Could not open file " + configPath)
 		fmt.Println(err)

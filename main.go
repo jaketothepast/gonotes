@@ -33,8 +33,7 @@ func main() {
 	}
 
 	fmt.Println(note)
-	configPresent := CheckConfig(configFilePath)
-	if configPresent {
+	if CheckConfigExists(configFilePath) {
 		log.Print("Config is present, ready for note-taking!")
 	}
 }
