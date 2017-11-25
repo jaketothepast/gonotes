@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path"
 )
 
 type Config struct {
@@ -21,8 +22,15 @@ func CheckConfig(configPath string) bool {
 		if configPath != "~/.gonotes/config.json" {
 			return false
 		} else {
-			os.Mkdir("~/.gonotes", 0600)
-			os.Create("~/.gonotes/config.json")
+			configPath = path.Join(os.Getenv("HOME"), ".gonotes/config.json")
+			err = os.Mkdir(path.Dir(configPath), 0700)
+			if err != nil {
+				fmt.Println(err)
+			}
+			_, err = os.Create(configPath)
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 	}
 
