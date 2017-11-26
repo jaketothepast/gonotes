@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"path"
@@ -11,7 +12,14 @@ type Config struct {
 }
 
 func WriteConfig() {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Directory for notes (blank for ~/.gonotes/notes): ")
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		panic(err)
+	}
 
+	fmt.Printf("Chosen directory: %s\n", input)
 }
 
 func CheckConfigExists(configPath string) bool {
@@ -30,6 +38,8 @@ func CheckConfigExists(configPath string) bool {
 			_, err = os.Create(configPath)
 			if err != nil {
 				fmt.Println(err)
+			} else {
+				WriteConfig()
 			}
 		}
 	}
