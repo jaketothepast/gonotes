@@ -4,16 +4,18 @@ package main
 This application will take notes from the command line, or from a file, and add
 those notes to a note file
 */
-
 import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
+	"path"
 )
 
 var noteFileName string
 var note string
 var configFilePath string
+var writeConfig bool
 
 type noteFile struct {
 	filename string
@@ -21,9 +23,12 @@ type noteFile struct {
 }
 
 func init() {
-	flag.StringVar(&noteFileName, "noteFileName", "example_file", "Filepath to notefile")
-	flag.StringVar(&note, "note", "example_note", "Note to insert")
-	flag.StringVar(&configFilePath, "configFilePath", "~/.gonotes/config.json", "Filepath to config")
+	defaultConfig := path.Join(os.Getenv("HOME"), ".gonotes/config.json")
+
+	flag.StringVar(&noteFileName, "noteFileName", "", "Filepath to notefile")
+	flag.StringVar(&note, "note", "", "Note to insert")
+	flag.StringVar(&configFilePath, "configFilePath", defaultConfig, "Filepath to config")
+	flag.BoolVar(&writeConfig, "writeConfig", false, "Write out a config file for gonotes")
 }
 
 func main() {
@@ -33,7 +38,6 @@ func main() {
 	}
 
 	fmt.Println(note)
-	if CheckConfigExists(configFilePath) {
-		log.Print("Config is present, ready for note-taking!")
-	}
+	// We should make this just one option.
+	CheckConfigExists(configFilePath)
 }

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path"
 )
@@ -45,12 +46,24 @@ func WriteConfig() {
 	}
 }
 
+func ReadConfig(configPath string) Config {
+	// Read the config into memory, marshal into Config object.
+	file, err := ioutil.ReadFile(configPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	config := Config{}
+	json.Unmarshal(file, &config)
+	return config
+}
+
 func CheckConfigExists(configPath string) bool {
 	if _, err := os.Stat(configPath); err != nil {
 		fmt.Println("Could not open file " + configPath)
 		fmt.Println(err)
 
-		if configPath != "~/.gonotes/config.json" {
+		if configPath != path.Join(os.Getenv("HOME"), ".gonotes/config.json") {
 			return false
 		} else {
 			configPath = path.Join(os.Getenv("HOME"), ".gonotes/config.json")
