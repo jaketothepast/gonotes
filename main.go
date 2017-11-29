@@ -33,11 +33,14 @@ func init() {
 
 func main() {
 	flag.Parse()
-	if note == "example_note" && noteFileName == "example_file" {
+	if note == "" && noteFileName == "" {
 		log.Fatal("Please specify a note file, or a note to save")
 	}
 
-	fmt.Println(note)
 	// We should make this just one option.
 	CheckConfigExists(configFilePath)
+
+	if note != "" {
+		WriteNoteToDateFile(configFilePath)
+	}
 }
