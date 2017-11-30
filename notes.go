@@ -18,4 +18,11 @@ func AppendToDateFile(configPath string, note string) {
 
 	notePath := path.Join(config.NoteDirectory, strings.Join(strs, "-"))
 	fmt.Println(notePath)
+
+	var file *File
+	if _, err := os.Stat(notePath); err == true {
+		file = os.Create(notePath);
+	} else {
+		file = os.Open(notePath);
+	}
 }
