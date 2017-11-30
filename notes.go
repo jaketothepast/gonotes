@@ -5,6 +5,7 @@ import (
 	"path"
 	"fmt"
 	"strings"
+	"strconv"
 )
 
 // Append command line note to filename with date
@@ -14,15 +15,9 @@ func AppendToDateFile(configPath string, note string) {
 
 	// TODO get the current date and use to create/read file
 	// under the config directory
-	strs := []string{string(currentDay), currentMonth.String(), string(currentYear)}
+	strs := []string{strconv.Itoa(currentDay), currentMonth.String(), strconv.Itoa(currentYear)}
 
 	notePath := path.Join(config.NoteDirectory, strings.Join(strs, "-"))
 	fmt.Println(notePath)
 
-	var file *File
-	if _, err := os.Stat(notePath); err == true {
-		file = os.Create(notePath);
-	} else {
-		file = os.Open(notePath);
-	}
 }
