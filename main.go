@@ -6,7 +6,6 @@ those notes to a note file
 */
 import (
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"path"
@@ -41,6 +40,6 @@ func main() {
 	CheckConfigExists(configFilePath)
 
 	if note != "" {
-		WriteNoteToDateFile(configFilePath)
+		AppendToDateFile(configFilePath, note)
 	}
 }
