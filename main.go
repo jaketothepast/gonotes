@@ -32,6 +32,11 @@ func init() {
 
 func main() {
 	flag.Parse()
+
+	if writeConfig == true {
+		WriteConfig()
+	}
+
 	if note == "" && noteFileName == "" {
 		log.Fatal("Please specify a note file, or a note to save")
 	}
