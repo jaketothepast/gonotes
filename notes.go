@@ -29,7 +29,7 @@ func AppendToDateFile(configPath string, note string) {
 
 	defer f.Close()
 
-	if _, err := f.WriteString(note); err != nil {
+	if _, err := f.WriteString(note + "\n"); err != nil {
 		panic(err)
 	}
 }

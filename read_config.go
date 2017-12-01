@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"strings"
 )
 
 type Config struct {
@@ -28,7 +29,7 @@ func WriteConfig() {
 		fmt.Println("Chosen directory: ~/.gonotes/notes")
 		input = path.Join(os.Getenv("HOME"), ".gonotes/notes")
 	} else {
-		fmt.Println("Chosen directory: ", input)
+		input = strings.TrimSuffix(input, "\n")
 	}
 
 	// TODO check for existence of notes directory before writing config
