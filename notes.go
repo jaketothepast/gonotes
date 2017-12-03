@@ -1,12 +1,12 @@
 package main
 
 import (
-	"time"
-	"path"
 	"fmt"
-	"strings"
-	"strconv"
 	"os"
+	"path"
+	"strconv"
+	"strings"
+	"time"
 )
 
 // Append command line note to filename with date
@@ -32,4 +32,8 @@ func AppendToDateFile(configPath string, note string) {
 	if _, err := f.WriteString(note + "\n"); err != nil {
 		panic(err)
 	}
+}
+
+func GetDateNotes(configPath string, date string) {
+	// Print out the notes for a given date
 }

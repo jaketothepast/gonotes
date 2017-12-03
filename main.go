@@ -15,6 +15,8 @@ var noteFileName string
 var note string
 var configFilePath string
 var writeConfig bool
+var printToday bool
+var printDate string
 
 type noteFile struct {
 	filename string
@@ -28,6 +30,8 @@ func init() {
 	flag.StringVar(&note, "note", "", "Note to insert")
 	flag.StringVar(&configFilePath, "configFilePath", defaultConfig, "Filepath to config")
 	flag.BoolVar(&writeConfig, "writeConfig", false, "Write out a config file for gonotes")
+	flag.BoolVar(&printToday, "printToday", false, "Print notes taken today")
+	flag.StringVar(&printDate, "printDate", "", "Date to print")
 }
 
 func main() {
