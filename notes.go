@@ -34,6 +34,10 @@ func AppendToDateFile(configPath string, note string) {
 	}
 }
 
-func GetDateNotes(configPath string, date string) {
+func PrintDateFile(configPath string, date string) {
 	// Print out the notes for a given date
+
+	layout := '2017-09-12'
+
+	date := time.Parse(layout, date)
 }

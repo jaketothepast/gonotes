@@ -51,4 +51,8 @@ func main() {
 	if note != "" {
 		AppendToDateFile(configFilePath, note)
 	}
+
+	if date != "" {
+		PrintDateFile(configPath, printDate)
+	}
 }
