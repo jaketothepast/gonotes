@@ -37,7 +37,15 @@ func AppendToDateFile(configPath string, note string) {
 func PrintDateFile(configPath string, date string) {
 	// Print out the notes for a given date
 
-	layout := '2017-09-12'
+	layout := "2017-01-18"
 
-	date := time.Parse(layout, date)
+	parsedDate, err := time.Parse(layout, date)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(parsedDate)
+
+
 }

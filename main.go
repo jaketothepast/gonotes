@@ -41,7 +41,7 @@ func main() {
 		WriteConfig()
 	}
 
-	if note == "" && noteFileName == "" {
+	if note == "" && noteFileName == "" && printDate == ""{
 		log.Fatal("Please specify a note file, or a note to save")
 	}
 
@@ -52,7 +52,7 @@ func main() {
 		AppendToDateFile(configFilePath, note)
 	}
 
-	if date != "" {
-		PrintDateFile(configPath, printDate)
+	if printDate != "" {
+		PrintDateFile(configFilePath, printDate)
 	}
 }
