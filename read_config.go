@@ -45,6 +45,10 @@ func WriteConfig() {
 	if err2 != nil {
 		panic(err2)
 	}
+
+	if _, err := os.Stat(input); err != nil {
+		os.MkdirAll(input, 0700)
+	}
 }
 
 func ReadConfig(configPath string) Config {
