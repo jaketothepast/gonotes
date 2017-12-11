@@ -15,3 +15,5 @@ note_taker -noteFileName myNotes.txt
 ```
 
 And the note taker will save your notes for future retrieval
+
+EDIT
