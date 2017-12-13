@@ -47,7 +47,7 @@ func main() {
 
 	// We should make this just one option.
 	CheckConfigExists(configFilePath)
-
+        log.Info("Hello")
 	if note != "" {
 		AppendToDateFile(configFilePath, note)
 	}
