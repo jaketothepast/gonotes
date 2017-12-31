@@ -46,6 +46,14 @@ func (n *Note) SetText(text string) {
 }
 
 /*
+ * Add a note to the NotePage
+ */
+func (np *NotePage) AddNote(n *Note) []Note {
+	s := append(np.notes, *n)
+	return s
+}
+
+/*
  * Factory function to create a new note
  */
 func NewNote(text string, priority int) *Note {
@@ -58,6 +66,8 @@ func NewNote(text string, priority int) *Note {
 
 func main() {
 	n := NewNote("hello world", 22)
+	np := new(NotePage)
+	np.AddNote(n)
 	fmt.Println(n.createdAt)
 }
 
