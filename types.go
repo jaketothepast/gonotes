@@ -1,6 +1,9 @@
 package main
 
-require "time"
+import (
+	"time"
+	"fmt"
+)
 
 type note interface {
 	// Notes should be able to save to a NotePage
@@ -14,7 +17,8 @@ type note interface {
 type Note struct {
 	text string
 	priority int
-	date time.Date
+	lastModified time.Time
+	createdAt time.Time
 
 	// Notes can have child notes
 	children []Note
@@ -33,7 +37,27 @@ type NotePage struct {
 	notes []Note
 }
 
-func main() {
+/*
+ * Set the text and the lastModified flags of a Note object
+ */
+func (n *Note) SetText(text string) {
+	n.text = text
+	n.lastModified = time.Now()
+}
 
+/*
+ * Factory function to create a new note
+ */
+func NewNote(text string, priority int) *Note {
+	note := new(Note)
+	note.createdAt = time.Now()
+	note.priority = priority
+	note.SetText(text)
+	return note
+}
+
+func main() {
+	n := NewNote("hello world", 22)
+	fmt.Println(n.createdAt)
 }
 
